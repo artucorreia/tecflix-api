@@ -27,4 +27,16 @@ public class SocialDTO {
     public ProfessorDTO getProfessor() {
         return professor;
     }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setProfessor(ProfessorDTO professor) {
+        this.professor = professor;
+    }
 }

@@ -38,4 +38,24 @@ public class BankAccountDTO {
     public ProfessorDTO getProfessor() {
         return professor;
     }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setAgency(String agency) {
+        this.agency = agency;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public void setDv(String dv) {
+        this.dv = dv;
+    }
+
+    public void setProfessor(ProfessorDTO professor) {
+        this.professor = professor;
+    }
 }

@@ -2,12 +2,13 @@ package com.artur.tecflix_api.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 @Table
 @Entity(name = "Social")
-public class Social {
+public class Social implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -36,6 +37,18 @@ public class Social {
 
     public Professor getProfessor() {
         return professor;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     @Override

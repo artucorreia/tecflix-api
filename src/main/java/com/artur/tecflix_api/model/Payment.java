@@ -4,12 +4,13 @@ import com.artur.tecflix_api.enums.PaymentMethod;
 import com.artur.tecflix_api.enums.PaymentStatus;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 @Table
 @Entity(name = "Payment")
-public class Payment {
+public class Payment implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -56,6 +57,26 @@ public class Payment {
 
     public Course getCourse() {
         return course;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override

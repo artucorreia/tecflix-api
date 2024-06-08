@@ -2,6 +2,7 @@ package com.artur.tecflix_api.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
@@ -9,7 +10,7 @@ import java.util.UUID;
 
 @Table
 @Entity(name = "Module")
-public class Module {
+public class Module implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -23,7 +24,7 @@ public class Module {
     @ManyToOne @JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false)
     private Course course;
 
-    @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module", fetch = FetchType.EAGER)
     private List<Class> classes;
 
     public Module() {}
@@ -53,6 +54,26 @@ public class Module {
 
     public List<Class> getClasses() {
         return classes;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setModuleDuration(LocalTime moduleDuration) {
+        this.moduleDuration = moduleDuration;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public void setClasses(List<Class> classes) {
+        this.classes = classes;
     }
 
     @Override

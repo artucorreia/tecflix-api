@@ -105,4 +105,56 @@ public class ProfessorDTO {
     public List<CourseDTO> getCourses() {
         return courses;
     }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public void setOccupation(OccupationDTO occupation) {
+        this.occupation = occupation;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
+
+    public void setBankAccount(BankAccountDTO bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public void setSocialList(List<SocialDTO> socialList) {
+        this.socialList = socialList;
+    }
+
+    public void setCourses(List<CourseDTO> courses) {
+        this.courses = courses;
+    }
 }

@@ -2,12 +2,13 @@ package com.artur.tecflix_api.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 @Table
 @Entity(name = "bank_account")
-public class BankAccount {
+public class BankAccount implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -52,6 +53,26 @@ public class BankAccount {
 
     public Professor getProfessor() {
         return professor;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setAgency(String agency) {
+        this.agency = agency;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public void setDv(String dv) {
+        this.dv = dv;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     @Override

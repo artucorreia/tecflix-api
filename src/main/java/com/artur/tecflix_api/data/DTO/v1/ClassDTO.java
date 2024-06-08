@@ -9,43 +9,55 @@ public class ClassDTO {
     private String title;
     private LocalTime classDuration;
     private String video;
+    private ModuleDTO module;
 
     public ClassDTO() {}
 
-    public ClassDTO(UUID id, String title, LocalTime classDuration, String video) {
+    public ClassDTO(UUID id, String title, LocalTime classDuration, String video, ModuleDTO module) {
         this.id = id;
         this.title = title;
         this.classDuration = classDuration;
         this.video = video;
+        this.module = module;
     }
 
     public UUID getId() {
         return id;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public LocalTime getClassDuration() {
         return classDuration;
     }
 
+    public void setClassDuration(LocalTime classDuration) {
+        this.classDuration = classDuration;
+    }
+
     public String getVideo() {
         return video;
     }
 
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ClassDTO classDTO = (ClassDTO) o;
-        return Objects.equals(id, classDTO.id) && Objects.equals(title, classDTO.title) && Objects.equals(classDuration, classDTO.classDuration) && Objects.equals(video, classDTO.video);
+    public void setVideo(String video) {
+        this.video = video;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, classDuration, video);
+    public ModuleDTO getModule() {
+        return module;
+    }
+
+    public void setModule(ModuleDTO module) {
+        this.module = module;
     }
 }

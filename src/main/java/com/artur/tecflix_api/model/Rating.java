@@ -2,13 +2,14 @@ package com.artur.tecflix_api.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
 @Table
 @Entity(name = "Rating")
-public class Rating {
+public class Rating implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -61,6 +62,30 @@ public class Rating {
 
     public Course getCourse() {
         return course;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override

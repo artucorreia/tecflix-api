@@ -65,4 +65,36 @@ public class AddressDTO {
     public ProfessorDTO getProfessor() {
         return professor;
     }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
+
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
+    }
+
+    public void setProfessor(ProfessorDTO professor) {
+        this.professor = professor;
+    }
 }

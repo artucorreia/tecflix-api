@@ -2,6 +2,7 @@ package com.artur.tecflix_api.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
@@ -9,7 +10,7 @@ import java.util.UUID;
 
 @Table
 @Entity(name = "course")
-public class Course {
+public class Course implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -29,11 +30,14 @@ public class Course {
     @ManyToOne @JoinColumn(name = "professor_id", referencedColumnName = "id", nullable = false)
     private Professor professor;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
     private List<Module> modules;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
     private List<Payment> payments;
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    private List<Rating> ratings;
 
     public Course() {}
 
@@ -78,6 +82,42 @@ public class Course {
         return payments;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setCourseDuration(LocalTime courseDuration) {
+        this.courseDuration = courseDuration;
+    }
+
+    public void setImageCape(String imageCape) {
+        this.imageCape = imageCape;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,11 +128,14 @@ public class Course {
                 && Objects.equals(courseDuration, course.courseDuration)
                 && Objects.equals(imageCape, course.imageCape)
                 && Objects.equals(description, course.description)
-                && Objects.equals(professor, course.professor);
+                && Objects.equals(professor, course.professor)
+                && Objects.equals(modules, course.modules)
+                && Objects.equals(payments, course.payments)
+                && Objects.equals(ratings, course.ratings);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, courseDuration, imageCape, description, professor);
+        return Objects.hash(id, title, courseDuration, imageCape, description, professor, modules, payments, ratings);
     }
 }

@@ -42,4 +42,24 @@ public class PaymentDTO {
     public CourseDTO getCourse() {
         return course;
     }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
+
+    public void setCourse(CourseDTO course) {
+        this.course = course;
+    }
 }

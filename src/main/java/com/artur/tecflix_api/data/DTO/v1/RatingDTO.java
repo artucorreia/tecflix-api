@@ -27,23 +27,47 @@ public class RatingDTO {
         return id;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public Double getGrade() {
         return grade;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
     }
 
     public String getComment() {
         return comment;
     }
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public LocalTime getDateTime() {
         return dateTime;
+    }
+
+    public void setDateTime(LocalTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public UserDTO getUser() {
         return user;
     }
 
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
+
     public CourseDTO getCourse() {
         return course;
+    }
+
+    public void setCourse(CourseDTO course) {
+        this.course = course;
     }
 }

@@ -67,4 +67,36 @@ public class CourseDTO {
     public List<PaymentDTO> getPayments() {
         return payments;
     }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setCourseDuration(LocalTime courseDuration) {
+        this.courseDuration = courseDuration;
+    }
+
+    public void setImageCape(String imageCape) {
+        this.imageCape = imageCape;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setProfessor(ProfessorDTO professor) {
+        this.professor = professor;
+    }
+
+    public void setModules(List<ModuleDTO> modules) {
+        this.modules = modules;
+    }
+
+    public void setPayments(List<PaymentDTO> payments) {
+        this.payments = payments;
+    }
 }

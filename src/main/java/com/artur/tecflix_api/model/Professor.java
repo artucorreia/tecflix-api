@@ -3,6 +3,7 @@ package com.artur.tecflix_api.model;
 import com.artur.tecflix_api.enums.Gender;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +12,7 @@ import java.util.UUID;
 
 @Table
 @Entity(name = "Professor")
-public class Professor {
+public class Professor implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -41,16 +42,16 @@ public class Professor {
     @ManyToOne @JoinColumn(name = "occupation_id", nullable = false)
     private Occupation occupation;
 
-    @OneToOne(mappedBy = "professor")
+    @OneToOne(mappedBy = "professor", fetch = FetchType.EAGER)
     private Address address;
 
-    @OneToOne(mappedBy = "professor")
+    @OneToOne(mappedBy = "professor", fetch = FetchType.EAGER)
     private BankAccount bankAccount;
 
-    @OneToMany(mappedBy = "professor")
+    @OneToMany(mappedBy = "professor", fetch = FetchType.EAGER)
     private List<Social> socials;
 
-    @OneToMany(mappedBy = "professor")
+    @OneToMany(mappedBy = "professor", fetch = FetchType.EAGER)
     private List<Course> courses;
 
     public Professor() {}
@@ -117,6 +118,58 @@ public class Professor {
 
     public List<Course> getCourses() {
         return courses;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public void setOccupation(Occupation occupation) {
+        this.occupation = occupation;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public void setSocials(List<Social> socials) {
+        this.socials = socials;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override
