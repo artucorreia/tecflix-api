@@ -1,10 +1,6 @@
 package com.artur.tecflix_api.controller;
 
-import com.artur.tecflix_api.data.DTO.v1.CreditCardDTO;
 import com.artur.tecflix_api.data.DTO.v1.UserDTO;
-import com.artur.tecflix_api.services.CreditCardService;
-import com.artur.tecflix_api.services.PaymentService;
-import com.artur.tecflix_api.services.RatingService;
 import com.artur.tecflix_api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,16 +15,7 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    UserService userService;
-
-    @Autowired
-    CreditCardService creditCardService;
-
-    @Autowired
-    PaymentService paymentService;
-
-    @Autowired
-    RatingService ratingService;
+    private UserService userService;
 
     @GetMapping(
             value = "/{id}",
@@ -63,14 +50,5 @@ public class UserController {
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping(
-            value = "/{id}/credit_cards",
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public List<CreditCardDTO> findAllCreditCards(@PathVariable UUID id) {
-        UserDTO userDTO = userService.findById(id);
-        return userDTO.getCreditCards();
     }
 }

@@ -5,6 +5,7 @@ import com.artur.tecflix_api.enums.PaymentStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -22,6 +23,9 @@ public class Payment implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_status", nullable = false)
     private PaymentStatus paymentStatus;
+
+    @Column(nullable = false)
+    private BigDecimal amount;
 
     @ManyToOne @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;

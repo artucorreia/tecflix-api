@@ -47,4 +47,24 @@ public class ModuleDTO {
     public List<ClassDTO> getClasses() {
         return classes;
     }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setModuleDuration(LocalTime moduleDuration) {
+        this.moduleDuration = moduleDuration;
+    }
+
+    public void setCourse(CourseDTO course) {
+        this.course = course;
+    }
+
+    public void setClasses(List<ClassDTO> classes) {
+        this.classes = classes;
+    }
 }

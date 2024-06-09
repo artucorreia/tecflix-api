@@ -1,7 +1,6 @@
 package com.artur.tecflix_api.services;
 
 import com.artur.tecflix_api.data.DTO.v1.CourseDTO;
-import com.artur.tecflix_api.data.DTO.v1.ModuleDTO;
 import com.artur.tecflix_api.data.DTO.v1.ProfessorDTO;
 import com.artur.tecflix_api.exceptions.ResourceNotFoundException;
 import com.artur.tecflix_api.mapper.Mapper;
@@ -19,36 +18,31 @@ public class CourseService {
     Logger logger = Logger.getLogger(CourseService.class.getName());
 
     @Autowired
-    CourseRepository repository;
+    private CourseRepository repository;
 
     @Autowired
-    ModuleService moduleService;
+    private ProfessorService professorService;
 
-    @Autowired
-    ProfessorService professorService;
-
-    public CourseDTO findById(UUID id) {
-        logger.info("finding one course");
+    public CourseDTO findById(UUID courseId) {
+        logger.info("Finding one course");
 
         return Mapper.parseObject(
-                repository.findById(id)
-                        .orElseThrow(
-                                () -> new ResourceNotFoundException("No records found for this id")
-                        ),
+                repository.findById(courseId)
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID")),
                 CourseDTO.class
         );
     }
 
     public List<CourseDTO> findAll() {
-        logger.info("finding all courses");
+        logger.info("Finding all courses");
 
         return Mapper.parseObjectList(repository.findAll(), CourseDTO.class);
     }
 
-    public CourseDTO create(CourseDTO courseDTO, UUID professorId) {
-        logger.info("creating one course");
+    public CourseDTO create(CourseDTO courseDTO) {
+        logger.info("Creating one course");
 
-        ProfessorDTO professorDTO = professorService.findById(professorId);
+        ProfessorDTO professorDTO = professorService.findById(courseDTO.getProfessor().getId());
         courseDTO.setProfessor(professorDTO);
 
         Course entity = Mapper.parseObject(courseDTO, Course.class);
@@ -56,14 +50,10 @@ public class CourseService {
         return Mapper.parseObject(repository.save(entity), CourseDTO.class);
     }
 
-    public CourseDTO addModule(CourseDTO courseDTO, ModuleDTO moduleDTO) {
-        logger.info("add one module");
-
-        moduleService.create(moduleDTO);
-        courseDTO.getModules().add(moduleDTO);
-
-        Course course = Mapper.parseObject(courseDTO, Course.class);
-
-        return Mapper.parseObject(repository.save(course), CourseDTO.class);
-    }
+//    public List<CourseDTO> findByProfessorId(UUID professorId) {
+//        return Mapper.parseObjectList(
+//                repository.findByProfessorId(professorId),
+//                CourseDTO.class
+//        );
+//    }
 }

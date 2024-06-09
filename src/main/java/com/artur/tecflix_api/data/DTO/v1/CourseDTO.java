@@ -10,9 +10,8 @@ public class CourseDTO {
     private LocalTime courseDuration;
     private String imageCape;
     private String description;
-    private ProfessorDTO professor;
     private List<ModuleDTO> modules;
-    private List<PaymentDTO> payments;
+    private ProfessorDTO professor;
 
     public CourseDTO() {}
 
@@ -23,8 +22,7 @@ public class CourseDTO {
             String imageCape,
             String description,
             ProfessorDTO professor,
-            List<ModuleDTO> modules,
-            List<PaymentDTO> payments
+            List<ModuleDTO> modules
     ) {
         this.id = id;
         this.title = title;
@@ -33,7 +31,6 @@ public class CourseDTO {
         this.description = description;
         this.professor = professor;
         this.modules = modules;
-        this.payments = payments;
     }
 
     public UUID getId() {
@@ -64,10 +61,6 @@ public class CourseDTO {
         return modules;
     }
 
-    public List<PaymentDTO> getPayments() {
-        return payments;
-    }
-
     public void setId(UUID id) {
         this.id = id;
     }
@@ -94,9 +87,5 @@ public class CourseDTO {
 
     public void setModules(List<ModuleDTO> modules) {
         this.modules = modules;
-    }
-
-    public void setPayments(List<PaymentDTO> payments) {
-        this.payments = payments;
     }
 }

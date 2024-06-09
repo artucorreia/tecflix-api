@@ -17,7 +17,7 @@ public class ClassService {
     Logger logger = Logger.getLogger(ClassService.class.getName());
 
     @Autowired
-    ClassRepository repository;
+    private ClassRepository repository;
 
     public ClassDTO findById(UUID id) {
         logger.info("finding one class");

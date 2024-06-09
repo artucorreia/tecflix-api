@@ -1,7 +1,7 @@
 package com.artur.tecflix_api.controller;
 
-import com.artur.tecflix_api.data.DTO.v1.CourseDTO;
-import com.artur.tecflix_api.services.CourseService;
+import com.artur.tecflix_api.data.DTO.v1.ClassDTO;
+import com.artur.tecflix_api.services.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -10,22 +10,22 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/courses")
-public class CourseController {
+@RequestMapping(value = "/classes")
+public class ClassController {
 
     @Autowired
-    private CourseService service;
+    private ClassService service;
 
     @GetMapping(
             value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public CourseDTO findById(@PathVariable UUID id) {
+    public ClassDTO findById(@PathVariable UUID id) {
         return service.findById(id);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CourseDTO> findAll() {
+    public List<ClassDTO> findAll() {
         return service.findAll();
     }
 
@@ -33,7 +33,7 @@ public class CourseController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public CourseDTO create(@RequestBody CourseDTO courseDTO) {
+    public ClassDTO create(@RequestBody ClassDTO courseDTO) {
         return service.create(courseDTO);
     }
 }

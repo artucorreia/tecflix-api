@@ -19,13 +19,13 @@ public class PaymentService {
     private final Logger logger = Logger.getLogger(PaymentService.class.getName());
 
     @Autowired
-    PaymentRepository paymentRepository;
+    private PaymentRepository paymentRepository;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    CourseService courseService;
+    private CourseService courseService;
 
     public PaymentDTO findById(UUID id) {
         logger.info("Finding one payment");

@@ -1,6 +1,7 @@
 package com.artur.tecflix_api.services;
 
 import com.artur.tecflix_api.data.DTO.v1.OccupationDTO;
+import com.artur.tecflix_api.data.DTO.v1.ProfessorDTO;
 import com.artur.tecflix_api.exceptions.ResourceNotFoundException;
 import com.artur.tecflix_api.mapper.Mapper;
 import com.artur.tecflix_api.model.Occupation;
@@ -17,7 +18,7 @@ public class OccupationService {
     Logger logger = Logger.getLogger(OccupationService.class.getName());
 
     @Autowired
-    OccupationRepository repository;
+    private OccupationRepository repository;
 
     public OccupationDTO findById(UUID id) {
         logger.info("finding one occupation");
@@ -25,7 +26,7 @@ public class OccupationService {
         return Mapper.parseObject(
                 repository.findById(id)
                         .orElseThrow(
-                                () -> new ResourceNotFoundException("No records found for this id")
+                            () -> new ResourceNotFoundException("No records found for this id")
                         ),
                 OccupationDTO.class
         );
@@ -39,9 +40,20 @@ public class OccupationService {
 
     public OccupationDTO create(OccupationDTO occupationDTO) {
         logger.info("creating one occupation");
+        logger.info(occupationDTO.toString());
 
         Occupation entity = Mapper.parseObject(occupationDTO, Occupation.class);
 
         return Mapper.parseObject(repository.save(entity), OccupationDTO.class);
     }
+
+//    public OccupationDTO addProfessor(UUID occupationId, ProfessorDTO professorDTO) {
+//        OccupationDTO occupationDTO = findById(occupationId);
+//
+//        occupationDTO.getProfessors().add(professorDTO);
+//
+//        Occupation entity = Mapper.parseObject(occupationDTO, Occupation.class);
+//
+//        return Mapper.parseObject(repository.save(entity), OccupationDTO.class);
+//    }
 }

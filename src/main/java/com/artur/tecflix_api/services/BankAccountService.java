@@ -18,10 +18,10 @@ public class BankAccountService {
     Logger logger = Logger.getLogger(BankAccountService.class.getName());
 
     @Autowired
-    BankAccountRepository repository;
+    private BankAccountRepository repository;
 
     @Autowired
-    ProfessorService professorService;
+    private ProfessorService professorService;
 
     public BankAccountDTO findById(UUID id) {
         logger.info("finding one course");

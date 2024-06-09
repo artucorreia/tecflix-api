@@ -1,5 +1,6 @@
 package com.artur.tecflix_api.services;
 
+import com.artur.tecflix_api.data.DTO.v1.CourseDTO;
 import com.artur.tecflix_api.data.DTO.v1.OccupationDTO;
 import com.artur.tecflix_api.data.DTO.v1.ProfessorDTO;
 import com.artur.tecflix_api.data.DTO.v1.UserDTO;
@@ -19,13 +20,16 @@ public class ProfessorService {
     private final Logger logger = Logger.getLogger(ProfessorService.class.getName());
 
     @Autowired
-    ProfessorRepository repository;
+    private ProfessorRepository repository;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    OccupationService occupationService;
+    private OccupationService occupationService;
+
+//    @Autowired
+//    CourseService courseService;
 
     public ProfessorDTO findById(UUID id) {
         logger.info("Finding one professor");
@@ -44,13 +48,13 @@ public class ProfessorService {
         return Mapper.parseObjectList(repository.findAll(), ProfessorDTO.class);
     }
 
-    public ProfessorDTO create(ProfessorDTO professorDTO, UUID userId, UUID occupationId) {
+    public ProfessorDTO create(ProfessorDTO professorDTO) {
         logger.info("Creating one professor");
 
-        UserDTO userDTO = userService.findById(userId);
+        UserDTO userDTO = userService.findById(professorDTO.getUser().getId());
         professorDTO.setUser(userDTO);
 
-        OccupationDTO occupationDTO = occupationService.findById(occupationId);
+        OccupationDTO occupationDTO = occupationService.findById(professorDTO.getOccupation().getId());
         professorDTO.setOccupation(occupationDTO);
 
         Professor professor = Mapper.parseObject(professorDTO, Professor.class);
@@ -65,4 +69,7 @@ public class ProfessorService {
         repository.delete(professor);
     }
 
+//    public List<CourseDTO> findCoursesByProfessorId(UUID id) {
+//        return courseService.findByProfessorId(id);
+//    }
 }

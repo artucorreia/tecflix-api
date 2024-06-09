@@ -18,10 +18,10 @@ public class SocialService {
     Logger logger = Logger.getLogger(SocialService.class.getName());
 
     @Autowired
-    SocialRepository repository;
+    private SocialRepository repository;
 
     @Autowired
-    ProfessorService professorService;
+    private ProfessorService professorService;
 
     public SocialDTO findById(UUID id) {
         logger.info("finding one course");

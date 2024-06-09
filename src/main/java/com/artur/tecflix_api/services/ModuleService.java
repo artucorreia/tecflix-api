@@ -1,6 +1,7 @@
 package com.artur.tecflix_api.services;
 
 import com.artur.tecflix_api.data.DTO.v1.ClassDTO;
+import com.artur.tecflix_api.data.DTO.v1.CourseDTO;
 import com.artur.tecflix_api.data.DTO.v1.ModuleDTO;
 import com.artur.tecflix_api.exceptions.ResourceNotFoundException;
 import com.artur.tecflix_api.mapper.Mapper;
@@ -18,10 +19,10 @@ public class ModuleService {
     Logger logger = Logger.getLogger(ModuleService.class.getName());
 
     @Autowired
-    ModuleRepository repository;
+    private ModuleRepository repository;
 
     @Autowired
-    ClassService classService;
+    private CourseService courseService;
 
     public ModuleDTO findById(UUID id) {
         logger.info("finding one module");
@@ -44,16 +45,11 @@ public class ModuleService {
     public ModuleDTO create(ModuleDTO moduleDTO) {
         logger.info("creating one module");
 
+        CourseDTO courseDTO = courseService.findById(moduleDTO.getCourse().getId());
+        moduleDTO.setCourse(courseDTO);
+
         Module entity = Mapper.parseObject(moduleDTO, Module.class);
 
         return Mapper.parseObject(repository.save(entity), ModuleDTO.class);
-    }
-
-    public ModuleDTO addClass(ModuleDTO moduleDTO, ClassDTO classDTO) {
-        classService.create(classDTO);
-        moduleDTO.getClasses().add(classDTO);
-
-        Module entity = Mapper.parseObject(moduleDTO, Module.class);
-        return Mapper.parseObject(entity, ModuleDTO.class);
     }
 }

@@ -18,10 +18,10 @@ public class AddressService {
     private final Logger logger = Logger.getLogger(AddressService.class.getName());
 
     @Autowired
-    AddressRepository repository;
+    private AddressRepository repository;
 
     @Autowired
-    ProfessorService professorService;
+    private ProfessorService professorService;
 
     public AddressDTO findById(UUID id) {
         logger.info("Finding one address");

@@ -19,13 +19,13 @@ public class RatingService {
     private final Logger logger = Logger.getLogger(RatingService.class.getName());
 
     @Autowired
-    RatingRepository repository;
+    private RatingRepository repository;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    CourseService courseService;
+    private CourseService courseService;
 
     public RatingDTO findById(UUID id) {
         logger.info("Finding one rating");

@@ -1,6 +1,5 @@
 package com.artur.tecflix_api.services;
 
-import com.artur.tecflix_api.data.DTO.v1.CreditCardDTO;
 import com.artur.tecflix_api.data.DTO.v1.UserDTO;
 import com.artur.tecflix_api.exceptions.ResourceNotFoundException;
 import com.artur.tecflix_api.mapper.Mapper;
@@ -18,10 +17,7 @@ public class UserService {
     private final Logger logger = Logger.getLogger(UserService.class.getName());
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CreditCardService creditCardService;
+    private UserRepository userRepository;
 
     public UserDTO findById(UUID id) {
         logger.info("Finding one user");
@@ -65,19 +61,5 @@ public class UserService {
         User user = Mapper.parseObject(findById(id), User.class);
 
         userRepository.delete(user);
-    }
-
-    public UserDTO addCreditCard(UUID userId, CreditCardDTO creditCardDTO) {
-        logger.info("Add one credit card");
-
-        // Creating credit card
-        creditCardService.create(creditCardDTO);
-        creditCardDTO.setUser(findById(userId));
-
-        UserDTO userDTO = findById(userId);
-        userDTO.getCreditCards().add(creditCardDTO);
-
-        User user = Mapper.parseObject(userDTO, User.class);
-        return Mapper.parseObject(userRepository.save(user), UserDTO.class);
     }
 }
