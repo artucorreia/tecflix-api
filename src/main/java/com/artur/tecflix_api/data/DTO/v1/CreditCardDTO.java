@@ -9,18 +9,9 @@ public class CreditCardDTO {
     private String cardHolder;
     private LocalDate expirationDate;
     private String cvv;
-    private UserDTO user;
+    private UUID userId;
 
     public CreditCardDTO() {}
-
-    public CreditCardDTO(UUID id, String cardNumber, String cardHolder, LocalDate expirationDate, String cvv, UserDTO user) {
-        this.id = id;
-        this.cardNumber = cardNumber;
-        this.cardHolder = cardHolder;
-        this.expirationDate = expirationDate;
-        this.cvv = cvv;
-        this.user = user;
-    }
 
     public UUID getId() {
         return id;
@@ -62,11 +53,11 @@ public class CreditCardDTO {
         this.cvv = cvv;
     }
 
-    public UserDTO getUser() {
-        return user;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setUser(UserDTO user) {
-        this.user = user;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 }

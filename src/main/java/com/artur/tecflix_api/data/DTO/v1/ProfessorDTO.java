@@ -19,7 +19,7 @@ public class ProfessorDTO {
     private OccupationDTO occupation;
     private AddressDTO address;
     private BankAccountDTO bankAccount;
-    private List<SocialDTO> socialList;
+    private List<SocialDTO> socials;
     private List<CourseDTO> courses;
 
     public ProfessorDTO() {}
@@ -36,7 +36,7 @@ public class ProfessorDTO {
             OccupationDTO occupation,
             AddressDTO address,
             BankAccountDTO bankAccount,
-            List<SocialDTO> socialList,
+            List<SocialDTO> socials,
             List<CourseDTO> courses
     ) {
         this.id = id;
@@ -50,7 +50,7 @@ public class ProfessorDTO {
         this.occupation = occupation;
         this.address = address;
         this.bankAccount = bankAccount;
-        this.socialList = socialList;
+        this.socials = socials;
         this.courses = courses;
     }
 
@@ -98,8 +98,8 @@ public class ProfessorDTO {
         return bankAccount;
     }
 
-    public List<SocialDTO> getSocialList() {
-        return socialList;
+    public List<SocialDTO> getSocials() {
+        return socials;
     }
 
     public List<CourseDTO> getCourses() {
@@ -150,8 +150,8 @@ public class ProfessorDTO {
         this.bankAccount = bankAccount;
     }
 
-    public void setSocialList(List<SocialDTO> socialList) {
-        this.socialList = socialList;
+    public void setSocials(List<SocialDTO> socials) {
+        this.socials = socials;
     }
 
     public void setCourses(List<CourseDTO> courses) {

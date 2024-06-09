@@ -1,42 +1,41 @@
 package com.artur.tecflix_api.data.DTO.v1;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class SocialDTO {
     private UUID id;
     private String url;
-    private ProfessorDTO professor;
+    private UUID professorId;
 
     public SocialDTO() {}
 
-    public SocialDTO(UUID id, String url, ProfessorDTO professor) {
+    public SocialDTO(UUID id, String url, UUID professorId) {
         this.id = id;
         this.url = url;
-        this.professor = professor;
+        this.professorId = professorId;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public ProfessorDTO getProfessor() {
-        return professor;
-    }
-
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public void setUrl(String url) {
         this.url = url;
     }
 
-    public void setProfessor(ProfessorDTO professor) {
-        this.professor = professor;
+    public UUID getProfessorId() {
+        return professorId;
+    }
+
+    public void setProfessorId(UUID professorId) {
+        this.professorId = professorId;
     }
 }

@@ -1,7 +1,6 @@
 package com.artur.tecflix_api.data.DTO.v1;
 
 import java.time.LocalTime;
-import java.util.Objects;
 import java.util.UUID;
 
 public class ClassDTO {
@@ -9,16 +8,16 @@ public class ClassDTO {
     private String title;
     private LocalTime classDuration;
     private String video;
-    private ModuleDTO module;
+    private UUID moduleId;
 
     public ClassDTO() {}
 
-    public ClassDTO(UUID id, String title, LocalTime classDuration, String video, ModuleDTO module) {
+    public ClassDTO(UUID id, String title, LocalTime classDuration, String video, UUID moduleId) {
         this.id = id;
         this.title = title;
         this.classDuration = classDuration;
         this.video = video;
-        this.module = module;
+        this.moduleId = moduleId;
     }
 
     public UUID getId() {
@@ -53,11 +52,11 @@ public class ClassDTO {
         this.video = video;
     }
 
-    public ModuleDTO getModule() {
-        return module;
+    public UUID getModuleId() {
+        return moduleId;
     }
 
-    public void setModule(ModuleDTO module) {
-        this.module = module;
+    public void setModuleId(UUID moduleId) {
+        this.moduleId = moduleId;
     }
 }

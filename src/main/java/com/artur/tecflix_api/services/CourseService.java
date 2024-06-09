@@ -42,9 +42,6 @@ public class CourseService {
     public CourseDTO create(CourseDTO courseDTO) {
         logger.info("Creating one course");
 
-        ProfessorDTO professorDTO = professorService.findById(courseDTO.getProfessor().getId());
-        courseDTO.setProfessor(professorDTO);
-
         Course entity = Mapper.parseObject(courseDTO, Course.class);
 
         return Mapper.parseObject(repository.save(entity), CourseDTO.class);

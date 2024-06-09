@@ -25,10 +25,10 @@ public class Address implements Serializable {
     @Column(nullable = false, length = 150)
     private String street;
 
-    @Column(nullable = false, length = 150)
+    @Column(length = 150)
     private String complement;
 
-    @Column(nullable = false, length = 150)
+    @Column(length = 150)
     private String neighborhood;
 
     @OneToOne @JoinColumn(name = "professor_id", referencedColumnName = "id", nullable = false)

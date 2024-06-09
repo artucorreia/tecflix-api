@@ -10,56 +10,56 @@ public class PaymentDTO {
     private UUID id;
     private PaymentMethod paymentMethod;
     private PaymentStatus paymentStatus;
-    private UserDTO user;
-    private CourseDTO course;
+    private UUID userId;
+    private UUID courseId;
 
     public PaymentDTO() {}
 
-    public PaymentDTO(UUID id, PaymentMethod paymentMethod, PaymentStatus paymentStatus, UserDTO user, CourseDTO course) {
+    public PaymentDTO(UUID id, PaymentMethod paymentMethod, PaymentStatus paymentStatus, UUID userId, UUID courseId) {
         this.id = id;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
-        this.user = user;
-        this.course = course;
+        this.userId = userId;
+        this.courseId = courseId;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public PaymentStatus getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public UserDTO getUser() {
-        return user;
-    }
-
-    public CourseDTO getCourse() {
-        return course;
-    }
-
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
     }
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
     public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
-    public void setUser(UserDTO user) {
-        this.user = user;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setCourse(CourseDTO course) {
-        this.course = course;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public UUID getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(UUID courseId) {
+        this.courseId = courseId;
     }
 }

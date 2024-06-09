@@ -43,9 +43,6 @@ public class CreditCardService {
     public CreditCardDTO create(CreditCardDTO creditCardDTO) {
         logger.info("Creating one credit card");
 
-        UserDTO userDTO = userService.findById(creditCardDTO.getUser().getId());
-        creditCardDTO.setUser(userDTO);
-
         return Mapper.parseObject(creditCardDTO, CreditCardDTO.class);
     }
 

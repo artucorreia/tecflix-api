@@ -45,9 +45,6 @@ public class ModuleService {
     public ModuleDTO create(ModuleDTO moduleDTO) {
         logger.info("creating one module");
 
-        CourseDTO courseDTO = courseService.findById(moduleDTO.getCourse().getId());
-        moduleDTO.setCourse(courseDTO);
-
         Module entity = Mapper.parseObject(moduleDTO, Module.class);
 
         return Mapper.parseObject(repository.save(entity), ModuleDTO.class);

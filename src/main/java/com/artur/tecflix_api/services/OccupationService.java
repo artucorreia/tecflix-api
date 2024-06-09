@@ -40,7 +40,6 @@ public class OccupationService {
 
     public OccupationDTO create(OccupationDTO occupationDTO) {
         logger.info("creating one occupation");
-        logger.info(occupationDTO.toString());
 
         Occupation entity = Mapper.parseObject(occupationDTO, Occupation.class);
 

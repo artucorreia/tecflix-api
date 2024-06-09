@@ -5,7 +5,9 @@ import com.artur.tecflix_api.data.DTO.v1.RatingDTO;
 import com.artur.tecflix_api.data.DTO.v1.UserDTO;
 import com.artur.tecflix_api.exceptions.ResourceNotFoundException;
 import com.artur.tecflix_api.mapper.Mapper;
+import com.artur.tecflix_api.model.Course;
 import com.artur.tecflix_api.model.Rating;
+import com.artur.tecflix_api.model.User;
 import com.artur.tecflix_api.repositories.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,17 +46,26 @@ public class RatingService {
         return Mapper.parseObjectList(repository.findAll(), RatingDTO.class);
     }
 
-    public RatingDTO create(RatingDTO ratingDTO, UUID courseId, UUID userId) {
+    public RatingDTO create(RatingDTO ratingDTO) {
         logger.info("Creating one rating");
 
-        UserDTO userDTO = userService.findById(userId);
-        ratingDTO.setUser(userDTO);
+        Rating entity = Mapper.parseObject(ratingDTO, Rating.class);
 
-        CourseDTO courseDTO = courseService.findById(courseId);
-        ratingDTO.setCourse(courseDTO);
+        entity.setUser(
+            Mapper.parseObject(
+                userService.findById(ratingDTO.getUserId()),
+                User.class
+            )
+        );
 
-        Rating rating = Mapper.parseObject(ratingDTO, Rating.class);
-        return Mapper.parseObject(repository.save(rating), RatingDTO.class);
+        entity.setCourse(
+            Mapper.parseObject(
+                courseService.findById(ratingDTO.getCourseId()),
+                Course.class
+            )
+        );
+
+        return Mapper.parseObject(repository.save(entity), RatingDTO.class);
     }
 
     public void delete(UUID id) {

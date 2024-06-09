@@ -10,20 +10,11 @@ public class AddressDTO {
     private String street;
     private String complement;
     private String neighborhood;
-    private ProfessorDTO professor;
+    private UUID professorId;
 
     public AddressDTO() {}
 
-    public AddressDTO(
-            UUID id,
-            String cep,
-            String state,
-            String city,
-            String street,
-            String complement,
-            String neighborhood,
-            ProfessorDTO professor
-    ) {
+    public AddressDTO(UUID id, String cep, String state, String city, String street, String complement, String neighborhood, UUID professorId) {
         this.id = id;
         this.cep = cep;
         this.state = state;
@@ -31,70 +22,70 @@ public class AddressDTO {
         this.street = street;
         this.complement = complement;
         this.neighborhood = neighborhood;
-        this.professor = professor;
+        this.professorId = professorId;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public String getCep() {
-        return cep;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getComplement() {
-        return complement;
-    }
-
-    public String getNeighborhood() {
-        return neighborhood;
-    }
-
-    public ProfessorDTO getProfessor() {
-        return professor;
-    }
-
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getCep() {
+        return cep;
     }
 
     public void setCep(String cep) {
         this.cep = cep;
     }
 
+    public String getState() {
+        return state;
+    }
+
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public void setCity(String city) {
         this.city = city;
     }
 
+    public String getStreet() {
+        return street;
+    }
+
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getComplement() {
+        return complement;
     }
 
     public void setComplement(String complement) {
         this.complement = complement;
     }
 
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
     public void setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood;
     }
 
-    public void setProfessor(ProfessorDTO professor) {
-        this.professor = professor;
+    public UUID getProfessorId() {
+        return professorId;
+    }
+
+    public void setProfessorId(UUID professorId) {
+        this.professorId = professorId;
     }
 }

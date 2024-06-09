@@ -5,7 +5,10 @@ import com.artur.tecflix_api.data.DTO.v1.PaymentDTO;
 import com.artur.tecflix_api.data.DTO.v1.UserDTO;
 import com.artur.tecflix_api.exceptions.ResourceNotFoundException;
 import com.artur.tecflix_api.mapper.Mapper;
+import com.artur.tecflix_api.model.Course;
 import com.artur.tecflix_api.model.Payment;
+import com.artur.tecflix_api.model.Professor;
+import com.artur.tecflix_api.model.User;
 import com.artur.tecflix_api.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,24 +47,33 @@ public class PaymentService {
         return Mapper.parseObjectList(paymentRepository.findAll(), PaymentDTO.class);
     }
 
-    public PaymentDTO create(PaymentDTO paymentDTO, UUID courseId, UUID userId) {
+    public PaymentDTO create(PaymentDTO paymentDTO) {
         logger.info("Creating one payment");
 
-        UserDTO userDTO = userService.findById(userId);
-        paymentDTO.setUser(userDTO);
+        Payment entity = Mapper.parseObject(paymentDTO, Payment.class);
 
-        CourseDTO courseDTO = courseService.findById(courseId);
-        paymentDTO.setCourse(courseDTO);
+        entity.setUser(
+            Mapper.parseObject(
+                userService.findById(paymentDTO.getUserId()),
+                User.class
+            )
+        );
 
-        Payment payment = Mapper.parseObject(paymentDTO, Payment.class);
-        return Mapper.parseObject(paymentRepository.save(payment), PaymentDTO.class);
+        entity.setCourse(
+            Mapper.parseObject(
+                userService.findById(paymentDTO.getCourseId()),
+                Course.class
+            )
+        );
+
+        return Mapper.parseObject(paymentRepository.save(entity), PaymentDTO.class);
     }
 
     public void delete(UUID id) {
         logger.info("Deleting one payment");
 
-        Payment payment = Mapper.parseObject(findById(id), Payment.class);
+        Payment entity = Mapper.parseObject(findById(id), Payment.class);
 
-        paymentRepository.delete(payment);
+        paymentRepository.delete(entity);
     }
 }

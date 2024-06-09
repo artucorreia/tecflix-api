@@ -5,6 +5,7 @@ import com.artur.tecflix_api.data.DTO.v1.ProfessorDTO;
 import com.artur.tecflix_api.exceptions.ResourceNotFoundException;
 import com.artur.tecflix_api.mapper.Mapper;
 import com.artur.tecflix_api.model.Address;
+import com.artur.tecflix_api.model.Professor;
 import com.artur.tecflix_api.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,15 +41,17 @@ public class AddressService {
         return Mapper.parseObjectList(repository.findAll(), AddressDTO.class);
     }
 
-    public AddressDTO create(AddressDTO addressDTO, UUID professorId) {
+    public AddressDTO create(AddressDTO addressDTO) {
         logger.info("Creating one address");
 
-        ProfessorDTO professorDTO = professorService.findById(professorId);
-        addressDTO.setProfessor(professorDTO);
-
-        Address address = Mapper.parseObject(addressDTO, Address.class);
-
-        return Mapper.parseObject(repository.save(address), AddressDTO.class);
+        Address entity = Mapper.parseObject(addressDTO, Address.class);
+        entity.setProfessor(
+            Mapper.parseObject(
+                professorService.findById(addressDTO.getProfessorId()),
+                Professor.class
+            )
+        );
+        return Mapper.parseObject(repository.save(entity), AddressDTO.class);
     }
 
     public void delete(UUID id) {

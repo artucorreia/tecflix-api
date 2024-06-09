@@ -4,6 +4,7 @@ import com.artur.tecflix_api.data.DTO.v1.ProfessorDTO;
 import com.artur.tecflix_api.data.DTO.v1.SocialDTO;
 import com.artur.tecflix_api.exceptions.ResourceNotFoundException;
 import com.artur.tecflix_api.mapper.Mapper;
+import com.artur.tecflix_api.model.Professor;
 import com.artur.tecflix_api.model.Social;
 import com.artur.tecflix_api.repositories.SocialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +42,17 @@ public class SocialService {
         return Mapper.parseObjectList(repository.findAll(), SocialDTO.class);
     }
 
-    public SocialDTO create(SocialDTO classDTO, UUID professorId) {
+    public SocialDTO create(SocialDTO socialDTO) {
         logger.info("creating one course");
 
-        ProfessorDTO professorDTO = professorService.findById(professorId);
-        classDTO.setProfessor(professorDTO);
+        Social entity = Mapper.parseObject(socialDTO, Social.class);
 
-        Social entity = Mapper.parseObject(classDTO, Social.class);
-
+        entity.setProfessor(
+            Mapper.parseObject(
+                professorService.findById(socialDTO.getProfessorId()),
+                Professor.class
+            )
+        );
         return Mapper.parseObject(repository.save(entity), SocialDTO.class);
     }
 }

@@ -9,18 +9,18 @@ public class RatingDTO {
     private Double grade;
     private String comment;
     private LocalTime dateTime;
-    private UserDTO user;
-    private CourseDTO course;
+    private UUID userId;
+    private UUID courseId;
 
     public RatingDTO() {}
 
-    public RatingDTO(UUID id, Double grade, String comment, LocalTime dateTime, UserDTO user, CourseDTO course) {
+    public RatingDTO(UUID id, Double grade, String comment, LocalTime dateTime, UUID userId, UUID courseId) {
         this.id = id;
         this.grade = grade;
         this.comment = comment;
         this.dateTime = dateTime;
-        this.user = user;
-        this.course = course;
+        this.userId = userId;
+        this.courseId = courseId;
     }
 
     public UUID getId() {
@@ -55,19 +55,19 @@ public class RatingDTO {
         this.dateTime = dateTime;
     }
 
-    public UserDTO getUser() {
-        return user;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setUser(UserDTO user) {
-        this.user = user;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
-    public CourseDTO getCourse() {
-        return course;
+    public UUID getCourseId() {
+        return courseId;
     }
 
-    public void setCourse(CourseDTO course) {
-        this.course = course;
+    public void setCourseId(UUID courseId) {
+        this.courseId = courseId;
     }
 }
